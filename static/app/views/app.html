@@ -48,16 +48,20 @@
             <div class="card-header">
                 <span class="pull-left">Processes</span>
                 <div class="pull-right">
-                    <input type="checkbox" [(ngModel)]="autoRefresh" /> Autorefresh 
-                    <button class="btn btn-xs btn-primary" [ngClass]="{'disabled': autoRefresh || isBusy1}" (click)="updateProcesses()"><i class="fa fa-refresh"></i></button>
+                    <span style="color: #0275d8; cursor: pointer;">
+                        <i *ngIf="autoRefresh === false" (click)="autoRefresh = true" class="fa fa-square-o" style="width: 15px;"></i>
+                        <i *ngIf="autoRefresh === true" (click)="autoRefresh = false" class="fa fa-check-square-o" style="width: 15px;"></i>
+                    </span>
+                    <span> Autorefresh</span> 
+                    <button class="btn btn-xs btn-primary" [disabled]="autoRefresh || isBusy1" (click)="updateProcesses()"><i class="fa fa-refresh"></i></button>
                 </div>
                 <div style="clear: both;"></div>
             </div>
 
             <div class="card-block">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover table-bordered table-sm">
-                        <thead class="thead-inverse">
+                    <table class="table table-striped table-hover table-bordered" style="margin: 0;">
+                        <thead>
                             <tr>
                                 <th style="width: 5%;">PID</th>
                                 <th>Name</th>
@@ -78,8 +82,8 @@
                                 <td>{{process.start*1000|date:'dd.MM.y HH:mm:ss'}}</td>
                                 <td>{{process.description.indexOf("uptime") > -1 ? process.description.split("uptime")[1] : "-"}}</td>
                                 <td [ngClass]="{'table-success': process.statename === 'RUNNING'}">{{process.statename}}</td>
-                                <td><button class="btn btn-xs btn-primary" [ngClass]="{'disabled': process.statename === 'RUNNING'}" (click)="start(process.name)"><i class="fa fa-play-circle"></i> Start</button></td>
-                                <td><button class="btn btn-xs btn-danger" [ngClass]="{'disabled': process.statename !== 'RUNNING'}" (click)="stop(process.name)"><i class="fa fa-stop-circle"></i> Stop</button></td>
+                                <td><button class="btn btn-xs btn-primary" [disabled]="process.statename === 'RUNNING'" (click)="start(process.name)"><i class="fa fa-play-circle"></i> Start</button></td>
+                                <td><button class="btn btn-xs btn-danger" [disabled]="process.statename !== 'RUNNING'" (click)="stop(process.name)"><i class="fa fa-stop-circle"></i> Stop</button></td>
                                 <td><button class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Log</button></td>
                             </tr>
                         </tbody>
