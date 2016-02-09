@@ -1,0 +1,92 @@
+<div style="position: fixed; top: 20px; right: 20px; z-index: 2000;">
+    <alert *ngFor="#alert of alerts;#i = index" [type]="alert.type" dismissOnTimeout="3000" dismissible="true" (close)="closeAlert(i)">
+    {{ alert?.msg }}
+    </alert>
+</div>
+
+<div class="row">
+    <div class="col-md-2 col-sm-4">
+        <div class="card card-inverse card-info">
+            <div class="card-block bg-info">
+                <div class="rotate">
+                    <i class="fa fa-list fa-5x"></i>
+                </div>
+                <h6 class="text-uppercase">ALL</h6>
+                <h1 class="display-1">{{processes.length}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-4">
+        <div class="card card-inverse card-success">
+            <div class="card-block bg-success">
+                <div class="rotate">
+                    <button class="btn btn-success" [ngClass]="{'disabled': isBusy1}" (click)="startAll()"><i class="fa fa-play fa-5x"></i></button>
+                </div>
+                <h6 class="text-uppercase">RUNNING</h6>
+                <h1 class="display-1">{{running}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-4">
+        <div class="card card-inverse card-danger">
+            <div class="card-block bg-danger">
+                <div class="rotate">
+                    <button class="btn btn-danger" [ngClass]="{'disabled': isBusy1}" (click)="stopAll()"><i class="fa fa-stop fa-5x"></i></button>
+                </div>
+                <h6 class="text-uppercase">STOPPED</h6>
+                <h1 class="display-1">{{stopped}}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/row-->
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="card">
+            <div class="card-header">
+                <span class="pull-left">Processes</span>
+                <div class="pull-right">
+                    <input type="checkbox" [(ngModel)]="autoRefresh" /> Autorefresh 
+                    <button class="btn btn-xs btn-primary" [ngClass]="{'disabled': autoRefresh || isBusy1}" (click)="updateProcesses()"><i class="fa fa-refresh"></i></button>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="card-block">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered table-sm">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th style="width: 5%;">PID</th>
+                                <th>Name</th>
+                                <th>Group</th>
+                                <th style="width: 10%;">Started</th>
+                                <th style="width: 10%;">Uptime</th>
+                                <th style="width: 10%;">State</th>
+                                <th style="width: 1%;"></th>
+                                <th style="width: 1%;"></th>
+                                <th style="width: 1%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="#process of processes">
+                                <td>{{process.pid > 0 ? process.pid : '-'}}</td>
+                                <td>{{process.name}}</td>
+                                <td>{{process.group}}</td>
+                                <td>{{process.start*1000|date:'dd.MM.y HH:mm:ss'}}</td>
+                                <td>{{process.description.indexOf("uptime") > -1 ? process.description.split("uptime")[1] : "-"}}</td>
+                                <td [ngClass]="{'table-success': process.statename === 'RUNNING'}">{{process.statename}}</td>
+                                <td><button class="btn btn-xs btn-primary" [ngClass]="{'disabled': process.statename === 'RUNNING'}" (click)="start(process.name)"><i class="fa fa-play-circle"></i> Start</button></td>
+                                <td><button class="btn btn-xs btn-danger" [ngClass]="{'disabled': process.statename !== 'RUNNING'}" (click)="stop(process.name)"><i class="fa fa-stop-circle"></i> Stop</button></td>
+                                <td><button class="btn btn-xs btn-default"><i class="fa fa-file-text-o"></i> Log</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

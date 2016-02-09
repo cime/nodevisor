@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Nodevisor</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="/style.css" rel="stylesheet">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.3/angular2-polyfills.js"></script>
+    <!--<script src="/main-build.js"></script>-->
+    <script src="/jspm_packages/system.js"></script>
+    <script src="/config.js"></script>
+    <script>
+        System.import("app/main").then(function() {
+            console.log("bootstrapped");
+        }).catch(function(error) {
+            console.error(error);
+        });
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
+        <div class="pull-right">
+            <div class="spinner" style="display: none;" id="busy-indicator">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+        <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            ☰
+        </button>
+        <span class="navbar-brand">Nodevisor</span>
+        <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+            <ul class="nav navbar-nav pull-right">
+                <!--<li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#myAlert" data-toggle="collapse">Wow</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" data-target="#myModal" data-toggle="modal">About</a>-->
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid" id="main">
+        <div class="row">
+
+            <div class="col-xs-12 main">
+                
+                <my-app></my-app>
+
+            </div>
+            <!--/main col-->
+        </div>
+
+    </div>
+    <!--/.container-->
+    <footer class="container-fluid">
+        <p class="text-right small">Copyright © 2016 Nodevisor</p>
+    </footer>
+</body>
+</html>

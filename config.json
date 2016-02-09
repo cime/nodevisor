@@ -1,0 +1,14 @@
+{
+    "supervisord": {
+        "hostname": "localhost",
+        "port": 9009,
+        "user": "",
+        "pass": ""
+    },
+    "nodevisor": {
+        "port": 9099,
+        "users": [
+            { "name": "admin", "pass": "admin" }
+        ]
+    }
+}

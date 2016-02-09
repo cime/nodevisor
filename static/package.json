@@ -1,0 +1,25 @@
+{
+  "name": "nodevisor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jspm-build": "0.0.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cime",
+  "license": "ISC",
+  "jspm": {
+    "dependencies": {
+      "angular2": "npm:angular2@^2.0.0-beta.3",
+      "lodash": "npm:lodash@^4.2.1",
+      "ng2-bootstrap": "npm:ng2-bootstrap@^1.0.3"
+    },
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
+  }
+}
