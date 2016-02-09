@@ -3,6 +3,10 @@
 __What is it?__
 Nodevisor is a web interface for [supervisord][1]
 
+## Screenshot
+
+![Nodevisor](/screenshots/nodevisor.png?raw=true "Nodevisor")
+
 ## Install
 
 ```
